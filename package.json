@@ -1,0 +1,40 @@
+{
+  "name": "projectmap",
+  "version": "1.0.0",
+  "description": "##Project MVP This will be an application that can map out simple coding projects. I believe, for the first edition of this project, the mapping mechanism will be based upon Vanilla JavaScript and the React library. This will really only be relevant because I intend for the mapping mechanism to offer built-in features such as an option to note what props need to be passed from one component/class to the next. Users will be able to construct their projects using an Object Oriented approach or a Functional approach.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --inline --hot --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamP692/projectMap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamP692/projectMap/issues"
+  },
+  "homepage": "https://github.com/SamP692/projectMap#readme",
+  "dependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "firebase": "^3.4.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-router": "^2.8.1",
+    "superagent": "^2.3.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0"
+  }
+}
