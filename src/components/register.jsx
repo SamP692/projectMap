@@ -26,7 +26,8 @@ class Register extends Component {
     }).then((user) => {
       firebase.database().ref('users').child(user.uid).set({ name, email: username });
     }).then(() => {
-      this.props.router.push('/dashboard');
+      const userId = firebase.auth().currentUser.uid;
+      this.props.router.push(`/${userId}`);
     });
   }
   render() {

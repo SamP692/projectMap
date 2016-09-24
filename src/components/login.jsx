@@ -18,14 +18,27 @@ class Login extends Component {
     stateObj[stateKey] = e.target.value;
     this.setState(stateObj);
   }
+  // handleSubmit() {
+  //   const { username, password } = this.state;
+  //   firebase.auth().signInWithEmailAndPassword(username, password).catch((err) => {
+  //     const errCode = err.code;
+  //     const errMessage = err.message;
+  //   }).then(() => {
+  //     this.props.router.push('/dashboard');
+  //   });
+  // }
   handleSubmit() {
     const { username, password } = this.state;
-    firebase.auth().signInWithEmailAndPassword(username, password).catch((err) => {
-      const errCode = err.code;
-      const errMessage = err.message;
-    }).then(() => {
-      this.props.router.push('/dashboard');
-    });
+    firebase.auth()
+            .signInWithEmailAndPassword(username, password)
+            .catch((err) => {
+              const errCode = err.code;
+              const errMessage = err.message;
+            })
+            .then(() => {
+              const userId = firebase.auth().currentUser.uid;
+              this.props.router.push(`/${userId}`);
+            });
   }
   render() {
     return (

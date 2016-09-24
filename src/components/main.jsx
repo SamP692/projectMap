@@ -31,8 +31,8 @@ class Main extends Component {
     if (!this.state.loggedIn) {
       return (
         <div>
-          <Link to="/login" id="login">Login | </Link>
-          <Link to="/register" id="register">Register</Link>
+          <Link to="/login" id="login" className="btn">Login</Link>
+          <Link to="/register" id="register" className="btn">Register</Link>
         </div>
       );
     } else {
@@ -52,7 +52,7 @@ class Main extends Component {
             {this.loggedInLinks()}
           </div>
         </header>
-        <div id="mainContet">
+        <div id="mainContent">
           {this.props.children}
         </div>
       </div>
