@@ -38,7 +38,7 @@ class Main extends Component {
     } else {
       return (
         <div id="sign-out">
-          <a href="#" onClick={this.signOut}>Sign Out</a>
+          <a href="#" id="signOut" onClick={this.signOut}>Sign Out</a>
         </div>
       );
     }

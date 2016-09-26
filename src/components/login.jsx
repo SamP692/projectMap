@@ -46,12 +46,12 @@ class Login extends Component {
         <div id="login-form">
           <h1>LOGIN</h1>
           <div>
-            <input name="username" onChange={this.handleChange} type="text" placeholder="username" autoFocus />
+            <input name="username" className="loginInfoInput" onChange={this.handleChange} type="text" placeholder="username" autoFocus />
           </div>
           <div>
-            <input name="password" onChange={this.handleChange} type="password" placeholder="password" />
+            <input name="password" className="loginInfoInput" onChange={this.handleChange} type="password" placeholder="password" />
           </div>
-          <button className="btn" onClick={this.handleSubmit}>Login</button>
+          <button className="btn" id="loginBtn" onClick={this.handleSubmit}>Login</button>
         </div>
       </div>
     );

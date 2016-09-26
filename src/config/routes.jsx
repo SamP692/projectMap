@@ -6,6 +6,7 @@ import Register from '../components/register.jsx';
 import Login from '../components/login.jsx';
 import Dashboard from '../components/dashboard.jsx';
 import requireAuth from '../utils/auth.js';
+import Project from '../components/project.jsx';
 
 const Routes = () => {
   return (
@@ -15,6 +16,7 @@ const Routes = () => {
         <Route path="register" component={Register} />
         <Route path="login" component={Login} />
         <Route path=":user" component={Dashboard} onEnter={requireAuth} />
+        <Route path=":user/:project" component={Project} />
       </Route>
     </Router>
   );

@@ -1,13 +1,16 @@
 @import 'https://fonts.googleapis.com/css?family=Permanent+Marker';
-/*
-Another good option for the logo font is one called 'Rock Salt'
-*/
+/* Another good option for the logo font is one called 'Rock Salt' */
 @import 'https://fonts.googleapis.com/css?family=Nunito:300';
 
 
 * {
   margin: 0;
   padding: 0;
+}
+
+
+body {
+  font-family: 'Nunito', sans-serif;
 }
 
 header {
@@ -27,22 +30,60 @@ header {
 
 #buttons {
   float: right;
-  margin-top: 1rem;
   margin-right: 4rem;
 }
 
 .btn {
-  display: inline;
+  display: inline-block;
   text-decoration: none;
   text-align: center;
   font-size: 1.2rem;
   color: #2c3e50;
   background-color: #7f8c8d;
   border-radius: .3rem;
+  width: 6rem;
+  height: 2.5rem;
+  padding-top: 1rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.75);
 }
 
-body {
-  font-family: 'Nunito', sans-serif;
+.btn:hover {
+  background-color: #9b59b6;
+  color: #ecf0f1;
+  box-shadow: none;
+}
+
+#signOut {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  background-color: #7f8c8d;
+  border-radius: .3rem;
+  width: 6rem;
+  height: 2.5rem;
+  padding-top: 1rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
+  box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.75);
+}
+
+#signOut:hover {
+  background-color: #9b59b6;
+  color: #ecf0f1;
+  box-shadow: none;
+}
+
+#loginBtn {
+  padding: 0;
+}
+
+#dashboardHeader {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
 }
 
 #mainContent {
@@ -52,7 +93,71 @@ body {
 }
 
 .projectLink {
-  height: 4rem;
-  width: 4rem;
-  background-color: red;
+  transition: .3s;
+  display: inline-block;
+  height: 6.5rem;
+  width: 11rem;
+  margin: 1rem;
+  background-color: #f39c12;
+  box-shadow: 0px 0px 25px -5px rgba(0,0,0,0.75);
+  color: #2c3e50;
+  border-radius: .2rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.projectLink:hover {
+  transition-duration: .3s;
+  height: 7.5rem;
+  width: 12rem;
+  margin: .5rem;
+  box-shadow: 0px 0px 45px -5px rgba(0,0,0,0.75);
+}
+
+#newProjectButtonWrap {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
+
+#newProjectButton {
+  text-decoration: none;
+  border: none;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  font-size: 2rem;
+  background-color: #2980b9;
+  color: #bdc3c7;
+  box-shadow: 0px 0px 25px -5px rgba(0,0,0,0.75);
+  border-radius: .2rem;
+  line-height: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+#newProjectButton:hover {
+  background-color: #3498db;
+  box-shadow: none;
+}
+
+#componentHouse {
+  margin: 1rem auto;
+  width: 98%;
+  min-height: 20rem;
+  background-color: #ecf0f1;
+  border: solid .1rem #95a5a6;
+  box-shadow: 0px 0px 11px 3px rgba(0,0,0,0.75);
+  text-align: center;
+  border-radius: .2rem;
+}
+
+.loginInfoInput {
+  width: 25rem;
+  line-height: 3.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  border: .2rem solid #2980b9;
+  border-radius: .2rem;
+  margin: 1rem auto;
 }
