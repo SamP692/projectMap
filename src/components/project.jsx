@@ -11,19 +11,22 @@ class Project extends Component {
     super();
     this.state = {
       name: '',
-      masterComponent: [],
-      levelTwoComponents: [],
-      levelThreeComponents: [],
-      levelFourComponents: [],
-      levelFiveComponents: [],
-      levelSixComponents: [],
-      levelSevenComponents: [],
+      components: '',
     };
   }
   componentDidMount() {
-    this.updateProjectDetails();
+    this.updateProjectName();
   }
-  updateProjectDetails() {
+  // snapshotTest() {
+  //   const userId = firebase.auth().currentUser.uid;
+  //   const data = firebase.database().ref().child('users')
+  //                                         .child(userId)
+  //                                         .child('projects');
+  //   data.on('value', (snapshot) => {
+  //     console.log(snapshot.val());
+  //   });
+  // }
+  updateProjectName() {
     const userId = firebase.auth().currentUser.uid;
     const projectId = this.props.params.project;
     const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects/${projectId}.json`;
@@ -32,14 +35,12 @@ class Project extends Component {
       this.setState({ name: projectInfo.name });
     });
   }
-  addMasterComponent() {
-    
-  }
   render() {
     return (
       <div>
         <h1>{this.state.name}</h1>
         <div id="componentHouse"></div>
+        <button id="newParentComponent" onClick={this.addMasterComponent}>Start Project</button>
       </div>
     );
   }

@@ -21,7 +21,6 @@ class Dashboard extends Component {
     this.getAllProjectsForUser();
   }
   getAllProjectsForUser() {
-    console.log('get request running');
     const userId = firebase.auth().currentUser.uid;
     const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects.json`;
     request.get(url).then((data) => {
