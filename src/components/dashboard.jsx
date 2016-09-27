@@ -16,6 +16,8 @@ class Dashboard extends Component {
     this.getAllProjectsForUser = this.getAllProjectsForUser.bind(this);
     this.createNewProject = this.createNewProject.bind(this);
     this.handleNewProjectPost = this.handleNewProjectPost.bind(this);
+    // this.deleteProject = this.deleteProject.bind(this);
+    this.editProjectName = this.editProjectName.bind(this);
   }
   componentDidMount() {
     this.getAllProjectsForUser();
@@ -52,9 +54,27 @@ class Dashboard extends Component {
     return this.state.projectNames.map((project, idx) => {
       const projectUrl = `${userId}/${this.state.projectIds[idx]}`;
       return (
-        <Link key={idx} to={projectUrl}><div className="projectLink">{project}</div></Link>
+        <div>
+          <Link key={idx} to={projectUrl}>
+            <div className="projectLink">{project}
+            </div>
+          </Link>
+          <button className="projectButton delete" id={this.state.projectIds[idx]} onClick={this.deleteProject}>X</button>
+          <button className="projectbutton edit" id={this.state.projectIds[idx]} onClick={this.editProjectName}>Edit</button>
+        </div>
       );
     });
+  }
+  // deleteProject() {
+  //
+  // }
+  editProjectName(e) {
+    const newProjectName = prompt('What would you like the new name to be?');
+    const userId = firebase.auth().currentUser.uid;
+    const projectId = e.target.id;
+    const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects/${projectId}.json`
+    request.patch(url).set({ name: newProjectName });
+    this.getAllProjectsForUser();
   }
   handleNewProjectPost() {
     this.createNewProject();
