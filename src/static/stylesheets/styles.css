@@ -152,6 +152,10 @@ header {
   border-radius: .2rem;
 }
 
+.projectWrap {
+  display: inline-block;
+}
+
 .loginInfoInput {
   width: 25rem;
   line-height: 3.5rem;

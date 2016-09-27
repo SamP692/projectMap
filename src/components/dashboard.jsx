@@ -16,7 +16,7 @@ class Dashboard extends Component {
     this.getAllProjectsForUser = this.getAllProjectsForUser.bind(this);
     this.createNewProject = this.createNewProject.bind(this);
     this.handleNewProjectPost = this.handleNewProjectPost.bind(this);
-    // this.deleteProject = this.deleteProject.bind(this);
+    this.deleteProject = this.deleteProject.bind(this);
     this.editProjectName = this.editProjectName.bind(this);
   }
   componentDidMount() {
@@ -54,8 +54,8 @@ class Dashboard extends Component {
     return this.state.projectNames.map((project, idx) => {
       const projectUrl = `${userId}/${this.state.projectIds[idx]}`;
       return (
-        <div>
-          <Link key={idx} to={projectUrl}>
+        <div key={idx} className="projectWrap">
+          <Link to={projectUrl}>
             <div className="projectLink">{project}
             </div>
           </Link>
@@ -65,16 +65,27 @@ class Dashboard extends Component {
       );
     });
   }
-  // deleteProject() {
-  //
-  // }
+  deleteProject(e) {
+    const userId = firebase.auth().currentUser.uid;
+    const projectId = e.target.id;
+    console.log(projectId);
+    const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects/${projectId}.json`;
+    request.del(url).catch((err) => {
+      console.log(err);
+    }).then(() => {
+      this.getAllProjectsForUser();
+    });
+  }
   editProjectName(e) {
     const newProjectName = prompt('What would you like the new name to be?');
     const userId = firebase.auth().currentUser.uid;
     const projectId = e.target.id;
-    const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects/${projectId}.json`
-    request.patch(url).set({ name: newProjectName });
-    this.getAllProjectsForUser();
+    const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects/${projectId}.json`;
+    request.patch(url).send({ name: newProjectName }).catch((err) => {
+      console.log(err);
+    }).then(() => {
+      this.getAllProjectsForUser();
+    });
   }
   handleNewProjectPost() {
     this.createNewProject();
