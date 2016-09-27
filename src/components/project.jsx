@@ -55,8 +55,8 @@ class Project extends Component {
       return (
         <div key={idx} className="componentView">
           {component}
-          <button className="projectButton delete" id={this.state.componentIds[idx]} onClick={this.deleteComponent}>X</button>
-          <button className="projectbutton edit" id={this.state.componentIds[idx]} onClick={this.editComponentName}>Edit</button>
+          <button className="componentButton delete" id={this.state.componentIds[idx]} onClick={this.deleteComponent}>X</button>
+          <button className="componentButton edit" id={this.state.componentIds[idx]} onClick={this.editComponentName}>Edit</button>
         </div>
       );
     });

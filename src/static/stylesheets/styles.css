@@ -165,3 +165,20 @@ header {
   border-radius: .2rem;
   margin: 1rem auto;
 }
+
+.projectButton {
+  border: solid .25rem #ecf0f1;
+  border-radius: .2rem;
+  margin-left: -.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  box-sizing: border-box;
+}
+
+.delete {
+  background-color: #c0392b;
+}
+
+.edit {
+  background-color: #2980b9;
+}
