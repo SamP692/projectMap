@@ -25,11 +25,23 @@ class Project extends Component {
     const projectId = '-K_CqRBCSaxvxiWacyfd';
     const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects/${projectId}/components.json`;
     request.get(url).then((components) => {
-      console.log(components.body);
+      const componentData = components.body;
+      this.updateTiers(componentData);
     });
   }
-  buildAllTiers(components) {
-    
+  updateTiers(componentData) {
+    const tiers = {};
+    Object.keys(componentData).forEach((id) => {
+      const componentName = componentData[id].name;
+      const tierNumber = componentData[id].tier;
+      if (tiers[tierNumber]) {
+        tiers[tierNumber].push(id);
+      } else {
+        tiers[tierNumber] = [id];
+      }
+    });
+    this.setState({ tiers });
+    console.log(this.state);
   }
   render() {
     return (
