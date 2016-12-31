@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import request from 'superagent';
 import firebase from '../../firebase.config.js';
 
@@ -19,19 +18,20 @@ class Project extends Component {
     this.updateComponentData();
   }
   updateComponentData() {
+      // Temporary UID for development
     const userId = 'WDv8s5fAtIhGfHjyZ6dYMpr6uvo2';
+      // Dynamic UID
+    // const userId = firebase.auth().currentUser.uid;
+      // Temporary project ID for development
     const projectId = '-K_CqRBCSaxvxiWacyfd';
+      // Dynamic project ID
+    // const projectId = this.props.params.project;
     const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects/${projectId}/components.json`;
     request.get(url).then((components) => {
       const componentData = components.body;
       this.updateTierState(componentData);
       this.updateObjectState(componentData);
     });
-  }
-  updateObjectState(componentData) {
-    const objects = componentData;
-    this.setState({ objects });
-    console.log(this.state);
   }
   updateTierState(componentData) {
     const tiers = {};
@@ -45,10 +45,30 @@ class Project extends Component {
     });
     this.setState({ tiers });
   }
+  updateObjectState(componentData) {
+    const objects = componentData;
+    this.setState({ objects });
+  }
+  buildAllTiers() {
+    const tiersState = this.state.tiers;
+    const objectsState = this.state.objects;
+    Object.keys(tiersState).forEach((tierId) => {
+      const objectsInTier = [];
+      Object.keys(objectsState).forEach((objectId) => {
+        if (objectsState[objectId].tier === parseInt(tierId, 10)) {
+          objectsInTier.push(objectsState[objectId]);
+        }
+      });
+    });
+  }
+  // buildIndividualTiers(componentArray) {
+  //
+  // }
   render() {
     return (
       <div id="componentHouse">
         <button>Nothing</button>
+        <div>{this.buildAllTiers()}</div>
       </div>
     );
   }
