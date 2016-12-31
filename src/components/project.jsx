@@ -12,27 +12,30 @@ class Project extends Component {
     super();
     this.state = {
       tiers: {},
-      objects: [],
+      objects: {},
     };
   }
   componentDidMount() {
-    this.retrieveComponentData();
+    this.updateComponentData();
   }
-  retrieveComponentData() {
-    // const userId = firebase.auth().currentUser.uid;
+  updateComponentData() {
     const userId = 'WDv8s5fAtIhGfHjyZ6dYMpr6uvo2';
-    // const projectId = this.props.params.project;
     const projectId = '-K_CqRBCSaxvxiWacyfd';
     const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects/${projectId}/components.json`;
     request.get(url).then((components) => {
       const componentData = components.body;
-      this.updateTiers(componentData);
+      this.updateTierState(componentData);
+      this.updateObjectState(componentData);
     });
   }
-  updateTiers(componentData) {
+  updateObjectState(componentData) {
+    const objects = componentData;
+    this.setState({ objects });
+    console.log(this.state);
+  }
+  updateTierState(componentData) {
     const tiers = {};
     Object.keys(componentData).forEach((id) => {
-      const componentName = componentData[id].name;
       const tierNumber = componentData[id].tier;
       if (tiers[tierNumber]) {
         tiers[tierNumber].push(id);
@@ -41,7 +44,6 @@ class Project extends Component {
       }
     });
     this.setState({ tiers });
-    console.log(this.state);
   }
   render() {
     return (
