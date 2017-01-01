@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import firebase from '../../firebase.config.js';
+import Tier from './tier.jsx';
 
 const propTypes = {
   params: React.PropTypes.object.isRequired,
@@ -52,13 +53,15 @@ class Project extends Component {
   buildAllTiers() {
     const tiersState = this.state.tiers;
     const objectsState = this.state.objects;
-    Object.keys(tiersState).forEach((tierId) => {
+    return Object.keys(tiersState).map((tierId) => {
       const objectsInTier = [];
       Object.keys(objectsState).forEach((objectId) => {
         if (objectsState[objectId].tier === parseInt(tierId, 10)) {
           objectsInTier.push(objectsState[objectId]);
         }
       });
+      console.log('reached end of tier loop');
+      return <Tier key={tierId} tierNumber={tierId} />;
     });
   }
   // buildIndividualTiers(componentArray) {
