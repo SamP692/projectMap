@@ -54,19 +54,16 @@ class Project extends Component {
     const tiersState = this.state.tiers;
     const objectsState = this.state.objects;
     return Object.keys(tiersState).map((tierId) => {
-      const objectsInTier = [];
+      const objectsArray = [];
       Object.keys(objectsState).forEach((objectId) => {
         if (objectsState[objectId].tier === parseInt(tierId, 10)) {
-          objectsInTier.push(objectsState[objectId]);
+          objectsArray.push(objectsState[objectId]);
         }
       });
-      console.log('reached end of tier loop');
-      return <Tier key={tierId} tierNumber={tierId} />;
+      console.log(objectsArray);
+      return <Tier key={tierId} tierNumber={tierId} objectsInTier={objectsArray} />;
     });
   }
-  // buildIndividualTiers(componentArray) {
-  //
-  // }
   render() {
     return (
       <div id="componentHouse">

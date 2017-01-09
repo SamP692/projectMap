@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
-import firebase from '../../firebase.config.js';
-
-// const propTypes = {
-//   objectArray: React.PropTypes.array.isRequired,
-// };
+import UserObject from './userObject.jsx';
 
 class Tier extends Component {
-  constructor(tierNumber) {
-    super();
-    this.state = {
-      tierNumber,
-    };
-  }
-  componentDidMount() {
-    console.log(this.state.tierNumber);
+  buildAllObjectComponents() {
+    return this.props.objectsInTier.map((object) => {
+      return (
+        <UserObject key={object.name} objectDetails={object} />
+      );
+    });
   }
   render() {
     return (
       <div className="tier">
-        Tier
+        {this.buildAllObjectComponents()}
       </div>
     );
   }
 }
-
-// Tier.propTypes = propTypes;
 
 export default Tier;
