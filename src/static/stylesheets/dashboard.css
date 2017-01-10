@@ -1,28 +1,36 @@
 #dashboard h1 {
+  /*-->   Space/Size   <--*/
   margin-bottom: 1rem;
   margin-left: 1rem;
 }
 
-#dashboard a {
-  display: inline-block;
-  transition: .3s;
+#dashboard .projectLink {
+  /*-->   Space/Size   <--*/
   display: inline-block;
   height: 6.5rem;
   width: 11rem;
   margin: 1rem;
-  background-color: #f39c12;
-  box-shadow: 0px 0px 25px -5px rgba(0,0,0,0.75);
-  color: #2c3e50;
-  border-radius: .2rem;
-  text-align: center;
   padding-top: 1.5rem;
+
+  /*-->   Content   <--*/
+  background-color: #f39c12;
+  color: #2c3e50;
+  text-align: center;
   font-size: 1.5rem;
+
+  /*-->   Appearance   <--*/
+  transition: .3s;
+  box-shadow: 0px 0px 25px -5px rgba(0,0,0,0.75);
+  border-radius: .2rem;
 }
 
-#dashboard a:hover {
-  transition-duration: .3s;
+#dashboard .projectLink:hover {
+  /*-->   Space/Size   <--*/
   height: 7.5rem;
   width: 12rem;
   margin: .5rem;
+
+  /*-->   Appearance   <--*/
+  transition-duration: .3s;
   box-shadow: 0px 0px 45px -5px rgba(0,0,0,0.75);
 }

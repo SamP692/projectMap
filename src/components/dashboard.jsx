@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-// import { withRouter } from 'react-router';
 import request from 'superagent';
 import { Link } from 'react-router';
 import firebase from '../../firebase.config.js';
-// import Project from './project.jsx';
 
 class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      projectNames: [],
-      projectIds: [],
+      projects: {},
     };
     this.createProjectLinks = this.createProjectLinks.bind(this);
     this.getAllProjectsForUser = this.getAllProjectsForUser.bind(this);
@@ -27,52 +24,39 @@ class Dashboard extends Component {
     const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects.json`;
     request.get(url).then((data) => {
       const projectData = data.body;
-      let projectNames = [];
-      let projectIds = [];
-      if (projectData) {
-        projectNames = Object.keys(projectData).map((id) => {
-          return projectData[id].name;
-        });
-        projectIds = Object.keys(projectData).map((id) => {
-          return id;
-        });
-      }
-      this.setState({ projectNames, projectIds });
+      const projects = {};
+      Object.keys(projectData).forEach((project) => {
+        projects[project] = {
+          name: projectData[project].name,
+        };
+      });
+      this.setState({ projects });
     });
   }
   createNewProject() {
     const projectName = prompt('Please enter a name for your project');
     const userId = firebase.auth().currentUser.uid;
     const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects.json`;
-    request.post(url).send({ name: projectName }).catch((err) => {
-      console.log(err);
-    });
+    request.post(url).send({ name: projectName }).catch();
     this.getAllProjectsForUser();
   }
   createProjectLinks() {
-    const userId = firebase.auth().currentUser.uid;
-    return this.state.projectNames.map((project, idx) => {
-      const projectUrl = `${userId}/${this.state.projectIds[idx]}`;
-      return (
-        <div key={idx} className="projectWrap">
-          <Link to={projectUrl}>
-            <div className="projectLink">{project}
-            </div>
-          </Link>
-          <button className="projectButton delete" id={this.state.projectIds[idx]} onClick={this.deleteProject}>X</button>
-          <button className="projectbutton edit" id={this.state.projectIds[idx]} onClick={this.editProjectName}>Edit</button>
-        </div>
-      );
-    });
+    const userProjects = this.state.projects;
+    return Object.keys(userProjects).map(project =>
+    (
+      <div className="projectLink" key={project}>
+        <h4>{userProjects[project].name}</h4>
+        <button id={project} onClick={this.deleteProject}>X</button>
+        <button id={project} onClick={this.editProjectName}>Edit</button>
+      </div>
+      )
+    );
   }
   deleteProject(e) {
     const userId = firebase.auth().currentUser.uid;
     const projectId = e.target.id;
-    console.log(projectId);
     const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects/${projectId}.json`;
-    request.del(url).catch((err) => {
-      console.log(err);
-    }).then(() => {
+    request.del(url).catch().then(() => {
       this.getAllProjectsForUser();
     });
   }
@@ -81,9 +65,7 @@ class Dashboard extends Component {
     const userId = firebase.auth().currentUser.uid;
     const projectId = e.target.id;
     const url = `https://projectmap-bf209.firebaseio.com/users/${userId}/projects/${projectId}.json`;
-    request.patch(url).send({ name: newProjectName }).catch((err) => {
-      console.log(err);
-    }).then(() => {
+    request.patch(url).send({ name: newProjectName }).catch().then(() => {
       this.getAllProjectsForUser();
     });
   }
@@ -96,7 +78,10 @@ class Dashboard extends Component {
       <div id="dashboard">
         <h1>My Projects</h1>
         <hr />
-        <div id="newProjectButtonWrap"><button id="newProjectButton" onClick={this.handleNewProjectPost}>+</button> Create a New Project</div>
+        <div id="newProjectButtonWrap">
+          <button id="newProjectButton" onClick={this.handleNewProjectPost}>+</button>
+          Create a New Project
+        </div>
         <div id="projectContainer">{this.createProjectLinks()}</div>
       </div>
     );
