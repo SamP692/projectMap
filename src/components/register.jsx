@@ -33,17 +33,34 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <div id="register-form">
+        <div className="acctInfo">
+          <h1>REGISTER</h1>
           <div>
-            <input name="name" onChange={this.handleChange} type="text" placeholder="name" autoFocus />
+            <input
+              name="name"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="name"
+              autoFocus
+            />
           </div>
           <div>
-            <input name="username" onChange={this.handleChange} type="text" placeholder="username" />
+            <input
+              name="username"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="username"
+            />
           </div>
           <div>
-            <input name="password" onChange={this.handleChange} type="password" placeholder="password" />
+            <input
+              name="password"
+              onChange={this.handleChange}
+              type="password"
+              placeholder="password"
+            />
           </div>
-          <button onClick={this.handleSubmit} className="btn">Register</button>
+          <button onClick={this.handleSubmit}>Register</button>
         </div>
       </div>
     );

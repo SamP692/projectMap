@@ -31,15 +31,13 @@ class Main extends Component {
     if (!this.state.loggedIn) {
       return (
         <div>
-          <Link to="/login" id="login" className="btn">Login</Link>
-          <Link to="/register" id="register" className="btn">Register</Link>
+          <Link to="/login" id="login">Login</Link>
+          <Link to="/register" id="register">Register</Link>
         </div>
       );
     } else {
       return (
-        <div id="sign-out">
-          <a href="#" id="signOut" onClick={this.signOut}>Sign Out</a>
-        </div>
+        <Link to="/" onClick={this.signOut}>Sign Out</Link>
       );
     }
   }
@@ -47,7 +45,7 @@ class Main extends Component {
     return (
       <div>
         <header>
-          <h1 id="navHeader">Project Map</h1>
+          <h1>React Mapper</h1>
           <div id="buttons">
             {this.loggedInLinks()}
           </div>

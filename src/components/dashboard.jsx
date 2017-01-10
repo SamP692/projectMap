@@ -93,8 +93,8 @@ class Dashboard extends Component {
   }
   render() {
     return (
-      <div>
-        <h1 id="dashboardHeader">My Projects</h1>
+      <div id="dashboard">
+        <h1>My Projects</h1>
         <hr />
         <div id="newProjectButtonWrap"><button id="newProjectButton" onClick={this.handleNewProjectPost}>+</button> Create a New Project</div>
         <div id="projectContainer">{this.createProjectLinks()}</div>

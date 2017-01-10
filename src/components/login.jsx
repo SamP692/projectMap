@@ -23,8 +23,8 @@ class Login extends Component {
     firebase.auth()
             .signInWithEmailAndPassword(username, password)
             .catch((err) => {
-              const errCode = err.code;
-              const errMessage = err.message;
+              // const errCode = err.code;
+              // const errMessage = err.message;
             })
             .then(() => {
               const userId = firebase.auth().currentUser.uid;
@@ -34,15 +34,22 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <div id="login-form">
+        <div className="acctInfo">
           <h1>LOGIN</h1>
-          <div>
-            <input name="username" className="loginInfoInput" onChange={this.handleChange} type="text" placeholder="username" autoFocus />
-          </div>
-          <div>
-            <input name="password" className="loginInfoInput" onChange={this.handleChange} type="password" placeholder="password" />
-          </div>
-          <button className="btn" id="loginBtn" onClick={this.handleSubmit}>Login</button>
+          <input
+            name="username"
+            onChange={this.handleChange}
+            type="text"
+            placeholder="username"
+            autoFocus
+          />
+          <input
+            name="password"
+            onChange={this.handleChange}
+            type="password"
+            placeholder="password"
+          />
+          <button onClick={this.handleSubmit}>Login</button>
         </div>
       </div>
     );
