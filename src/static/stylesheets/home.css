@@ -1,0 +1,21 @@
+#about {
+  /*-->   Space/Size   <--*/
+  float: left;
+  width: 65%;
+  min-height: 10rem;
+  margin-left: 1%;
+
+  /*-->   Appearance   <--*/
+  border: 1px black solid;
+}
+
+#sample {
+  /*-->   Space/Size   <--*/
+  float: right;
+  width: 32%;
+  min-height: 10rem;
+  margin-right: 1%;
+
+  /*-->   Appearance   <--*/
+  border: 1px black solid;
+}
